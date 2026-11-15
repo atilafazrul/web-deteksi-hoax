@@ -1,0 +1,81 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.spec
+
+# Virtual environments
+.env
+venv/
+ENV/
+env/
+.venv/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Large model files (exceed GitHub 100MB limit)
+saved_models/
+*.bin
+*.pt
+*.pth
+*.pkl
+*.h5
+*.ckpt
+*.safetensors
+
+# Large data & archive folders (exceed GitHub limits)
+archive.zip
+dataset_politics/
+dataset_multimedia_12k/
+dataset_multitopic_10k/
+dataset_multitopic/
+dataset_kesehatan/
+komdigi_hoaks.csv
+
+# Ignore redundant/duplicate data splits, keep only the official 41k & 10k splits
+data_splits/*
+!data_splits/train_combined_41k.csv
+!data_splits/val_combined_41k.csv
+!data_splits/test_combined_41k.csv
+!data_splits/train_scraped_10k.csv
+!data_splits/val_scraped_10k.csv
+!data_splits/test_scraped_10k.csv
+
+*.zip
+*.tar.gz
+*.gz
+*.docx
+*.pdf
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Presentation files (kept local only)
+*.pptx
+generate_presentation*.py
