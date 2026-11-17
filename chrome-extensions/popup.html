@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HoaxLens ID</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <!-- Header (Clean Minimalist: Logo & Title, No Colorful Bars, No Status Badge) -->
+  <header class="app-header">
+    <div class="brand">
+      <img src="icons/icon48.png" alt="HoaxLens Logo" class="brand-logo">
+      <div class="brand-info">
+        <h1 class="brand-title">Hoax<span class="brand-gradient">Lens</span></h1>
+        <span class="brand-sub">Deteksi Hoaks Berita</span>
+      </div>
+    </div>
+    <div class="header-aside">
+      <button id="btnHeaderRefresh" class="btn-icon-header" title="Pindai Ulang Tab Browser"
+        aria-label="Pindai Ulang Tab">
+        <svg class="icon-refresh" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2v4h-4" />
+          <path d="M2 14v-4h4" />
+          <path d="M2.5 6a6 6 0 0 1 9.5-2.5L14 6" />
+          <path d="M13.5 10a6 6 0 0 1-9.5 2.5L2 10" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Segmented Navigation with Sliding Pill Glider -->
+  <nav class="nav-segmented" id="navSegmented">
+    <div class="nav-glider" id="navGlider"></div>
+    <button class="nav-tab active" data-tab="tab-url">Halaman Aktif</button>
+    <button class="nav-tab" data-tab="tab-text">Input Teks</button>
+    <button class="nav-tab" data-tab="tab-settings">Pengaturan</button>
+  </nav>
+
+  <!-- Main View -->
+  <main class="app-main" id="appMain">
+    <div class="tabs-slider-track" id="tabsTrack">
+
+      <!-- Tab 1: Active Tab URL Scanner -->
+      <section id="tab-url" class="tab-pane active" data-index="0">
+        <div class="surface-card">
+          <div class="field-group">
+            <label class="field-label">Alamat Tab Saat Ini</label>
+            <div id="currentTabUrl" class="url-display">Mendeteksi halaman...</div>
+          </div>
+          <button id="btnScanUrl" class="btn btn-primary btn-block">
+            Periksa Halaman Ini
+          </button>
+
+          <!-- Progressive Scanning Feedback -->
+          <div id="urlScanProgress" class="scan-progress hidden">
+            <div class="scan-progress-bar">
+              <div class="scan-progress-fill" id="urlScanFill"></div>
+            </div>
+            <div class="scan-step-label" id="urlScanStepLabel">1. Mengekstrak teks & struktur...</div>
+          </div>
+        </div>
+
+        <div id="urlResultContainer" class="result-container hidden"></div>
+      </section>
+
+      <!-- Tab 2: Manual Text Input -->
+      <section id="tab-text" class="tab-pane" data-index="1">
+        <div class="surface-card">
+          <div class="field-group">
+            <label for="inputTitle" class="field-label">Judul Berita (Opsional)</label>
+            <input type="text" id="inputTitle" class="text-input" placeholder="Masukkan judul berita...">
+          </div>
+
+          <div class="field-group mt-3">
+            <label for="inputText" class="field-label">Isi Berita</label>
+            <textarea id="inputText" class="text-input textarea" rows="4"
+              placeholder="Tempelkan pesan atau naskah berita..."></textarea>
+          </div>
+
+          <button id="btnScanText" class="btn btn-primary btn-block mt-3">
+            Analisis Teks Berita
+          </button>
+
+          <!-- Progressive Scanning Feedback -->
+          <div id="textScanProgress" class="scan-progress hidden">
+            <div class="scan-progress-bar">
+              <div class="scan-progress-fill" id="textScanFill"></div>
+            </div>
+            <div class="scan-step-label" id="textScanStepLabel">1. Memeriksa naskah berita...</div>
+          </div>
+        </div>
+
+        <div id="textResultContainer" class="result-container hidden"></div>
+      </section>
+
+      <!-- Tab 3: Settings -->
+      <section id="tab-settings" class="tab-pane" data-index="2">
+        <div class="surface-card">
+          <!-- Dark Mode Toggle Row -->
+          <div class="settings-row">
+            <div class="settings-info">
+              <span class="settings-title">Mode Gelap</span>
+              <span class="settings-desc">Gunakan tema gelap untuk tampilan yang lebih nyaman</span>
+            </div>
+            <label class="switch-toggle" for="themeToggle">
+              <input type="checkbox" id="themeToggle">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Status Layanan -->
+          <div class="settings-row">
+            <div class="settings-info">
+              <span class="settings-title">Status Layanan</span>
+              <span id="serviceStatusText" class="service-status-text">Aktif</span>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="spec-list">
+            <div class="spec-item">
+              <span>Model Deteksi</span>
+              <code>SVM + TF-IDF</code>
+            </div>
+            <div class="spec-item">
+              <span>Platform</span>
+              <span>Chrome Manifest V3</span>
+            </div>
+            <a href="http://localhost:5173" target="_blank" class="link-dashboard">
+              Buka Web Dashboard &rarr;
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Fallback Overlay (Hidden by default) -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+      <div class="spinner"></div>
+      <p id="loadingText" class="loading-label">Menganalisis konten...</p>
+    </div>
+
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>
